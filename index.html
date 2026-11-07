@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Личная система управления жизнью">
+  <meta name="theme-color" content="#10131b">
+  <meta name="description" content="Личная система управления жизнью — Life OS">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
@@ -13,126 +13,37 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">L</div><div><b>Life OS</b><small>PERSONAL COMMAND CENTER</small></div></div>
-      <div class="side-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
-      <nav id="sideNav" class="side-nav"></nav>
-      <div class="sidebar-bottom">
-        <div class="sync-indicator"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Локальное хранение</span></div>
-        <button class="ghost-btn" id="settingsBtn">⚙ Настройки и резервная копия</button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <button class="mobile-brand" id="mobileHome"><span class="brand-mark">L</span> Life OS</button>
-        <div class="crumb" id="breadcrumb">Обзор / Главная</div>
-        <div class="top-actions"><span class="date-chip" id="todayLabel"></span><button class="avatar" id="profileBtn" aria-label="Профиль">D</button></div>
-      </header>
-
-      <section class="page active" id="page-dashboard">
-        <div class="hero">
-          <div class="hero-copy">
-            <div class="eyebrow"><span class="live-dot"></span> ТВОЯ СИСТЕМА УПРАВЛЕНИЯ</div>
-            <h1>Двигайся к жизни,<br><em>которую выбираешь.</em></h1>
-            <p>Держи фокус на главном. Деньги, работа, проекты и личные цели — в одном месте.</p>
-            <button class="primary-btn" data-go="cycles">Открыть текущий цикл <span>↗</span></button>
-          </div>
-          <div class="hero-orbit"><div class="orbit-ring ring-a"></div><div class="orbit-ring ring-b"></div><div class="orbit-core"><span>40</span><small>ДНЕЙ</small></div><div class="orbit-tag tag-top">FOCUS</div><div class="orbit-tag tag-bottom">PROGRESS</div></div>
-        </div>
-
-        <div class="section-heading"><div><span class="eyebrow">СЕЙЧАС</span><h2>Твоя панель</h2></div><span class="muted small">Обновляется из разделов системы</span></div>
-        <div class="stats-grid">
-          <article class="stat-card accent-violet"><div class="stat-top"><span>Финансовая подушка</span><span class="stat-icon">◈</span></div><strong id="reserveStat">0 ₽</strong><div class="stat-foot"><span id="reserveProgress">0% от цели 100 000 ₽</span><div class="mini-progress"><i id="reserveBar"></i></div></div></article>
-          <article class="stat-card accent-blue"><div class="stat-top"><span>Долги</span><span class="stat-icon">↘</span></div><strong id="debtStat">10 000 ₽</strong><div class="stat-foot"><span>Стартовый ориентир</span><span class="status-pill warning">В работе</span></div></article>
-          <article class="stat-card accent-green"><div class="stat-top"><span>Доход за месяц</span><span class="stat-icon">↗</span></div><strong id="incomeStat">—</strong><div class="stat-foot"><span>Фактические поступления</span><span class="status-pill">Факт</span></div></article>
-          <article class="stat-card accent-orange"><div class="stat-top"><span>Текущий цикл</span><span class="stat-icon">◷</span></div><strong id="cycleDayStat">День 1 / 40</strong><div class="stat-foot"><span id="cycleDateStat">4 ноя — 13 дек 2026</span><div class="mini-progress"><i id="cycleBar"></i></div></div></article>
-        </div>
-
-        <div class="dashboard-grid">
-          <article class="panel focus-panel">
-            <div class="panel-head"><div><span class="eyebrow">ГЛАВНЫЙ ФОКУС</span><h3>4 результата цикла</h3></div><button class="text-btn" data-go="cycles">Все задачи ↗</button></div>
-            <div id="focusList" class="focus-list"></div>
-          </article>
-          <article class="panel allocation-panel">
-            <div class="panel-head"><div><span class="eyebrow">ФИНАНСОВАЯ СИСТЕМА</span><h3>Распределение дохода</h3></div><button class="text-btn" data-go="finance">Финансы ↗</button></div>
-            <div class="allocation-visual"><div class="donut" id="allocationDonut"><div><b>25%</b><small>В копилки</small></div></div><div class="allocation-legend"><div><i class="dot purple"></i><span>Подушка</span><b>10%</b></div><div><i class="dot blue"></i><span>Покупки</span><b>10%</b></div><div><i class="dot green"></i><span>ИИС</span><b>5%</b></div><div><i class="dot gray"></i><span>Расходы</span><b>75%</b></div></div></div>
-            <div class="panel-note">Правило применяется к фактическим поступлениям. Приоритет — обязательные платежи и дорогие долги.</div>
-          </article>
-        </div>
-
-        <div class="dashboard-grid lower-grid">
-          <article class="panel">
-            <div class="panel-head"><div><span class="eyebrow">СТРАТЕГИЯ</span><h3>Вектор на 5 лет</h3></div><button class="text-btn" data-go="strategy">Стратегия ↗</button></div>
-            <div class="vision-card"><div class="vision-number">2031</div><div><b>Финансовая свобода</b><p>Ориентир личного дохода 800–900 тыс. ₽/мес. и капитал 10 млн ₽. Амбициозная цель, не прогноз.</p></div></div>
-            <div class="vision-tags"><span>Свой бизнес</span><span>Несколько доходов</span><span>Свободный график</span></div>
-          </article>
-          <article class="panel">
-            <div class="panel-head"><div><span class="eyebrow">БЛИЖАЙШИЕ ОРИЕНТИРЫ</span><h3>До ноября 2027</h3></div><button class="text-btn" data-go="goals">Цели ↗</button></div>
-            <div class="milestone"><span class="milestone-icon purple-bg">₽</span><div><b>500 000 ₽ накоплений</b><small>Амбициозная цель</small></div><span class="milestone-arrow">↗</span></div>
-            <div class="milestone"><span class="milestone-icon blue-bg">⌁</span><div><b>Мотоцикл</b><small>Лето 2027 · 150–200 тыс. ₽ ориентир</small></div><span class="milestone-arrow">↗</span></div>
-            <div class="milestone"><span class="milestone-icon green-bg">AI</span><div><b>Ресторанная платформа</b><small>1 тестовый + 3 платных ресторана</small></div><span class="milestone-arrow">↗</span></div>
-          </article>
-        </div>
-        <div class="footer-note">Твоя система. Твои решения. Один шаг за раз.</div>
+    <header class="topbar">
+      <button class="brand" id="homeBtn" aria-label="На главную"><span class="brand-mark">L</span><span><b>Life OS</b><small>PERSONAL SYSTEM</small></span></button>
+      <div class="topbar-right"><span class="save-state" id="saveState">● Сохранено</span><button class="icon-btn" id="settingsBtn" aria-label="Настройки">⚙</button></div>
+    </header>
+    <main id="appMain">
+      <section id="homeView" class="view active">
+        <div class="welcome"><div class="eyebrow">ТВОЯ ЛИЧНАЯ СИСТЕМА</div><h1>Управляй тем,<br><em>что действительно важно.</em></h1><p>Все направления жизни — в одном пространстве. Меняй структуру и содержание так, как удобно тебе.</p></div>
+        <div class="home-summary" id="homeSummary"></div>
+        <div class="section-head"><div><span class="eyebrow">РАБОЧЕЕ ПРОСТРАНСТВО</span><h2>Мои разделы</h2></div><button class="button button-soft" id="toggleHomeEdit">Изменить порядок</button></div>
+        <div id="sectionGrid" class="section-grid"></div>
+        <button class="add-section" id="addSection">＋ Добавить раздел</button>
+        <footer>Life OS · Твои данные, твои правила.</footer>
       </section>
-
-      <section class="page" id="page-finance">
-        <div class="page-title"><div><span class="eyebrow">ДЕНЬГИ И КАПИТАЛ</span><h1>Финансы</h1><p>Планируй осознанно, учитывай факт, двигайся к капиталу.</p></div><button class="primary-btn" id="addTransaction">＋ Добавить операцию</button></div>
-        <div class="stats-grid finance-stats"><article class="stat-card accent-green"><div class="stat-top"><span>Доходы за месяц</span><span>↗</span></div><strong id="finIncome">0 ₽</strong><div class="stat-foot">Фактические поступления</div></article><article class="stat-card accent-orange"><div class="stat-top"><span>Расходы за месяц</span><span>↘</span></div><strong id="finExpense">0 ₽</strong><div class="stat-foot">Фактические расходы</div></article><article class="stat-card accent-violet"><div class="stat-top"><span>Баланс операций</span><span>＝</span></div><strong id="finBalance">0 ₽</strong><div class="stat-foot">Доходы минус расходы</div></article><article class="stat-card accent-blue"><div class="stat-top"><span>Долги и обязательства</span><span>◷</span></div><strong id="finDebt">80 000 ₽</strong><div class="stat-foot">Оценка: долг 10 тыс. + 50–70 тыс.</div></article></div>
-        <div class="dashboard-grid">
-          <article class="panel"><div class="panel-head"><div><span class="eyebrow">ДВИЖЕНИЕ ДЕНЕГ</span><h3>Доходы и расходы</h3></div><span class="period-chip">Текущий месяц</span></div><div class="chart-wrap" id="cashChart"></div></article>
-          <article class="panel"><div class="panel-head"><div><span class="eyebrow">БЮДЖЕТ</span><h3>Базовые расходы</h3></div><span class="period-chip">55 000 ₽ / мес.</span></div><div id="budgetList" class="budget-list"></div></article>
+      <section id="detailView" class="view">
+        <button class="back-link" id="backHome">← Все разделы</button>
+        <div id="detailContent"></div>
+      </section>
+      <section id="settingsView" class="view">
+        <button class="back-link" id="settingsBack">← На главную</button>
+        <div class="page-heading"><div class="eyebrow">УПРАВЛЕНИЕ СИСТЕМОЙ</div><h1>Настройки</h1><p>Сохранение, перенос данных и управление содержимым.</p></div>
+        <div class="settings-cards">
+          <article class="panel"><div class="eyebrow">РЕЗЕРВНАЯ КОПИЯ</div><h3>Экспорт и восстановление</h3><p>Скачай JSON со всеми разделами, сводками, блоками и настройками. Храни копию отдельно от телефона.</p><div class="button-row"><button class="button button-primary" id="exportData">Скачать копию</button><label class="button button-soft file-button">Восстановить копию<input type="file" id="importData" accept="application/json" hidden></label></div></article>
+          <article class="panel"><div class="eyebrow">ХРАНЕНИЕ</div><h3>Локально на устройстве</h3><p>Изменения автоматически сохраняются в браузере этого устройства. GitHub Pages публикует приложение, но не синхронизирует личные данные между устройствами.</p><div class="storage-line"><span class="status-dot"></span><b>Автосохранение включено</b></div></article>
+          <article class="panel"><div class="eyebrow">ДАННЫЕ</div><h3>Вернуть исходную структуру</h3><p>Создай резервную копию перед сбросом. Сброс удалит текущие данные только из этого браузера.</p><button class="button button-danger" id="resetData">Сбросить данные приложения</button></article>
         </div>
-        <article class="panel table-panel"><div class="panel-head"><div><span class="eyebrow">ЖУРНАЛ ОПЕРАЦИЙ</span><h3>Последние движения</h3></div><button class="text-btn" id="clearFilter">Сбросить фильтр</button></div><div class="table-scroll"><table><thead><tr><th>Дата</th><th>Операция</th><th>Категория</th><th>Тип</th><th class="right">Сумма</th><th></th></tr></thead><tbody id="transactionRows"><tr><td colspan="6" class="empty-cell">Пока нет операций. Добавь первое поступление или расход.</td></tr></tbody></table></div></article>
-      </section>
-
-      <section class="page" id="page-cycles">
-        <div class="page-title"><div><span class="eyebrow">СИСТЕМА ДЕЙСТВИЙ</span><h1>40-дневный цикл</h1><p>Не бесконечный список дел, а четыре результата, которые меняют положение.</p></div><span class="period-chip" id="cycleRange">04.11 — 13.12.2026</span></div>
-        <article class="panel cycle-hero"><div><span class="eyebrow">ТЕКУЩИЙ ЦИКЛ · № 01</span><h2>Собрать устойчивую основу</h2><p>Работа, финансовая дисциплина, первый этап платформы и возвращение к спорту.</p></div><div class="cycle-ring" id="cycleRing"><div><b id="cyclePercent">0%</b><small>ПРОГРЕСС</small></div></div></article>
-        <div id="cycleTasks" class="cycle-task-grid"></div>
-        <article class="panel review-panel"><div class="panel-head"><div><span class="eyebrow">КОНТРОЛЬНЫЕ ТОЧКИ</span><h3>Отчёты по циклу</h3></div></div><div class="checkpoints"><div><b>День 10</b><span>13 ноября</span><small>Короткий отчёт</small></div><div><b>День 20</b><span>23 ноября</span><small>Короткий отчёт</small></div><div><b>День 30</b><span>3 декабря</span><small>Короткий отчёт</small></div><div><b>День 40</b><span>13 декабря</span><small>Итоги и новый цикл</small></div></div></article>
-      </section>
-
-      <section class="page" id="page-goals">
-        <div class="page-title"><div><span class="eyebrow">НАПРАВЛЕНИЕ</span><h1>Цели и стратегия</h1><p>Большие ориентиры, разбитые на понятные этапы.</p></div></div>
-        <div class="goal-grid" id="goalGrid"></div>
-      </section>
-
-      <section class="page" id="page-projects">
-        <div class="page-title"><div><span class="eyebrow">СОЗИДАНИЕ</span><h1>Проекты и работа</h1><p>Работа даёт стабильность. Собственные проекты создают новые возможности.</p></div></div>
-        <div class="project-grid" id="projectGrid"></div>
-      </section>
-
-      <section class="page" id="page-life">
-        <div class="page-title"><div><span class="eyebrow">ЛИЧНАЯ ИСТОРИЯ</span><h1>Жизнь и впечатления</h1><p>Сохраняй важное — не обязательно фиксировать каждый день.</p></div><button class="primary-btn" id="addNote">＋ Новая запись</button></div>
-        <div class="life-grid">
-          <article class="panel"><div class="panel-head"><div><span class="eyebrow">ЛЕТОПИСЬ</span><h3>События жизни</h3></div></div><div id="timelineList" class="timeline-list"></div></article>
-          <article class="panel"><div class="panel-head"><div><span class="eyebrow">МЫСЛИ И ВЫВОДЫ</span><h3>Заметки</h3></div></div><div id="notesList" class="notes-list"></div></article>
-        </div>
-      </section>
-
-      <section class="page" id="page-library">
-        <div class="page-title"><div><span class="eyebrow">ВСЯ СИСТЕМА</span><h1>Разделы Life OS</h1><p>18 направлений. Заполняй только то, что актуально.</p></div></div>
-        <div class="library-grid" id="libraryGrid"></div>
-      </section>
-
-      <section class="page" id="page-settings">
-        <div class="page-title"><div><span class="eyebrow">УПРАВЛЕНИЕ ДАННЫМИ</span><h1>Настройки</h1><p>Резервные копии, синхронизация и персональные параметры.</p></div></div>
-        <div class="settings-grid">
-          <article class="panel"><span class="eyebrow">РЕЗЕРВНАЯ КОПИЯ</span><h3>Твои данные под контролем</h3><p class="muted">Скачай JSON-файл со всеми записями или восстанови данные из ранее созданной копии.</p><div class="settings-actions"><button class="primary-btn" id="exportData">Скачать резервную копию</button><label class="secondary-btn">Восстановить из файла<input type="file" id="importData" accept="application/json" hidden></label></div></article>
-          <article class="panel"><span class="eyebrow">ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ</span><h3 id="cloudTitle">Подключение не настроено</h3><p class="muted" id="cloudDescription">Для облачного хранения нужен отдельный проект Firebase. Пока приложение сохраняет данные на этом iPhone и работает офлайн.</p><div class="sync-status-line"><span class="sync-dot" id="settingsSyncDot"></span><span id="settingsSyncLabel">Локальный режим</span></div><p class="tiny muted">Не вводи пароли, банковские данные или другие секреты в заметки. Для первой версии облачная синхронизация будет подключаться отдельно.</p></article>
-          <article class="panel"><span class="eyebrow">ТВОЯ ФИНАНСОВАЯ МОДЕЛЬ</span><h3>Распределение поступлений</h3><div class="split-editor"><label>Подушка <input id="pctReserve" type="number" min="0" max="100" value="10">%</label><label>Покупки <input id="pctPurchases" type="number" min="0" max="100" value="10">%</label><label>ИИС <input id="pctInvest" type="number" min="0" max="100" value="5">%</label></div><button class="secondary-btn" id="saveAllocation">Сохранить пропорции</button><small class="muted" id="allocationTotal">Всего в копилки: 25%</small></article>
-          <article class="panel"><span class="eyebrow">ПАРАМЕТРЫ ЦЕЛЕЙ</span><h3>Финансовые ориентиры</h3><div class="split-editor"><label>Цель подушки, ₽ <input id="reserveGoal" type="number" value="100000"></label><label>Стартовый долг, ₽ <input id="debtStart" type="number" value="10000"></label></div><button class="secondary-btn" id="saveSettings">Сохранить параметры</button></article>
-        </div>
-        <div class="danger-zone"><b>Сброс данных</b><p>Удаляет данные приложения с этого устройства. Перед сбросом обязательно скачай резервную копию.</p><button class="danger-btn" id="resetData">Удалить локальные данные</button></div>
       </section>
     </main>
+    <nav class="mobile-nav" aria-label="Основная навигация"><button class="active" id="navHome">⌂<span>Главная</span></button><button id="navSettings">⚙<span>Настройки</span></button></nav>
   </div>
-
-  <div class="bottom-nav" id="bottomNav"></div>
-  <div class="modal-backdrop" id="modalBackdrop"><div class="modal" id="modal"><div class="modal-head"><h3 id="modalTitle">Новая запись</h3><button class="close-btn" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
-  <div class="toast" id="toast"></div>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true"><div class="modal-head"><h2 id="modalTitle">Редактирование</h2><button class="icon-btn" id="modalClose" aria-label="Закрыть">×</button></div><div id="modalBody"></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
   <script src="./app.js"></script>
 </body>
 </html>
